@@ -13,14 +13,27 @@
         , y = this.game.height / 2;
 
 
-      this.titleTxt = this.add.bitmapText(x, y, 'minecraftia', 'Example Game' );
-      this.titleTxt.align = 'center';
-      this.titleTxt.x = this.game.width / 2 - this.titleTxt.textWidth / 2;
+     var  text = this.add.text(this.world.centerX, this.world.centerY, "- phaser gradient text -");
 
-      y = y + this.titleTxt.height + 5;
-      this.startTxt = this.add.bitmapText(x, y, 'minecraftia', 'START');
-      this.startTxt.align = 'center';
-      this.startTxt.x = this.game.width / 2 - this.startTxt.textWidth / 2;
+    //  Centers the text
+    text.anchor.set(0.5);
+    text.align = 'center';
+
+    //  Our font + size
+    text.font = 'Arial';
+    text.fontWeight = 'bold';
+    text.fontSize = 70;
+
+    //  Here we create a linear gradient on the Text context.
+    //  This uses the exact same method of creating a gradient as you do on a normal Canvas context.
+    var grd = text.context.createLinearGradient(0, 0, 0, text.canvas.height);
+
+    //  Add in 2 color stops
+    grd.addColorStop(0, '#8ED6FF');   
+    grd.addColorStop(1, '#004CB3');
+
+    //  And apply to the Text
+    text.fill = grd;
 
       this.input.onDown.add(this.onDown, this);
     },
