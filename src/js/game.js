@@ -3,15 +3,17 @@
 
   function Game() {
     this.player = null;
+    this.circumference = null;
   }
-
   Game.prototype = {
 
     create: function () {
       var x = this.game.width / 2
         , y = this.game.height / 2;
 
-      this.player = this.add.sprite(x, y, 'player');
+
+      this.player = this.add.sprite(x, y, 'nucleus');
+      this.circumference = this.add.sprite(x - 200, y - 200, 'circumference');
       this.player.anchor.setTo(0.5, 0.5);
       this.input.onDown.add(this.onInputDown, this);
     },

@@ -14,7 +14,10 @@
 
       this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
       this.load.setPreloadSprite(this.asset);
-      this.load.image('player', 'assets/player.png');
+
+      this.load.image('nucleus', 'assets/nucleus.png');
+      this.load.image('circumference', 'assets/circumference.png');
+      
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
     },
 
