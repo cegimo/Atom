@@ -4,6 +4,8 @@
   function Game() {
     this.nucleus = null;
     this.circumference = null;
+    this.electron = null;
+    this.constraint = null;
   }
   Game.prototype = {
 
@@ -16,20 +18,21 @@
 
       this.nucleus = this.add.sprite(x, y, 'nucleus');
       this.circumference = this.add.sprite(x - 200, y - 200, 'circumference');
+      this.electron = this.add.sprite(x , y , 'square');
       this.physics.p2.enable([this.nucleus]);
-
-
-      this.input.onDown.add(this.onInputDown, this);
+      //this.physics.p2.enable([this.electron]);
+      this.electron.pivot.x = 180;
+      this.electron.pivot.y = 180;
+      //this.constraint = this.physics.p2.createRevoluteConstraint(this.electron, [ 25, 25 ], this.nucleus, [ 15, 15]);
     },
 
     update: function () {
-      this.nucleus.body.rotateLeft(50);
+      this.electron.rotation += 0.02;
+     this.nucleus.body.rotateLeft(50);
+     //this.electron.body.rotateRight(50);
       
     },
 
-    onInputDown: function () {
-      this.game.state.start('menu');
-    }
 
   };
 
