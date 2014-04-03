@@ -17,10 +17,17 @@
         this.game.stage.scale.pageAlignHorizontally = true;
       } else {
         this.game.stage.scaleMode = Phaser.StageScaleMode.SHOW_ALL;
+<<<<<<< HEAD
         this.game.stage.scale.minWidth =  1024;
         this.game.stage.scale.minHeight = 768;
         this.game.stage.scale.maxWidth = 500;
         this.game.stage.scale.maxHeight = 500;
+=======
+        this.game.stage.scale.minWidth =  480;
+        this.game.stage.scale.minHeight = 260;
+        this.game.stage.scale.maxWidth = 800;
+        this.game.stage.scale.maxHeight = 800;
+>>>>>>> fda641b98985349caa5e48293728ae6eec1d69c3
         this.game.stage.scale.forceLandscape = true;
         this.game.stage.scale.pageAlignHorizontally = true;
         this.game.stage.scale.setScreenSize(true);
