@@ -18,6 +18,7 @@
       this.load.image('nucleus', 'assets/nucleus.png');
       this.load.image('circumference', 'assets/circumference.png');
       this.load.image('square', 'assets/square.png');
+      this.load.image('player', 'assets/player1.png');
       
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
     },

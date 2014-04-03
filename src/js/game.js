@@ -5,6 +5,7 @@
     this.nucleus = null;
     this.circumference = null;
     this.electron = null;
+    this.player = null;
     this.constraint = null;
   }
   Game.prototype = {
@@ -19,6 +20,7 @@
       this.nucleus = this.add.sprite(x, y, 'nucleus');
       this.circumference = this.add.sprite(x - 200, y - 200, 'circumference');
       this.electron = this.add.sprite(x , y , 'square');
+      this.player = this.add.sprite(x, y + 200, 'player');
       this.physics.p2.enable([this.nucleus]);
       //this.physics.p2.enable([this.electron]);
       this.electron.pivot.x = 180;
