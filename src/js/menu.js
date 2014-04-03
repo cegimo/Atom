@@ -13,7 +13,7 @@
         , y = this.game.height / 2;
 
 
-     var  text = this.add.text(this.world.centerX, this.world.centerY, "- phaser gradient text -");
+     var  text = this.add.text(this.world.centerX, this.world.centerY, "- ATOM -");
 
     //  Centers the text
     text.anchor.set(0.5);
