@@ -4,7 +4,7 @@ window.onload = function () {
   var game
     , ns = window['atom'];
 
-  game = new Phaser.Game(800, 600, Phaser.AUTO, 'atom-game');
+  game = new Phaser.Game(800, 800, Phaser.AUTO, 'atom-game');
   game.state.add('boot', ns.Boot);
   game.state.add('preloader', ns.Preloader);
   game.state.add('menu', ns.Menu);
