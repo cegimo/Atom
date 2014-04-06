@@ -16,12 +16,20 @@
     this.rotationEnemy2 = null;
     this.rotationEnemy3 = null;
     this.timeGame = 0;
+    this.scoreTime = 0;
+    this.score = 0;
+    this.scoreString = null;
   }
   Game.prototype = {
 
 
     create: function () {
       this.timeGame = this.game.time.now;
+      this.scoreTime = this.game.time.now;
+
+    this.scoreString = 'Time : ';
+    this.scoreText = this.add.text(10, 10, this.scoreString + this.score, { font: '34px Arial', fill: '#fff' });
+
       this.x = this.game.width / 2;
       this.y = this.game.height / 2;
     this.jump = false;
@@ -101,6 +109,8 @@
           this.rotationEnemy3 += 0.005;
           this.timeGame = this.game.time.now;
       } 
+      this.score = -((this.scoreTime - this.game.time.now) /1000);
+      this.scoreText.text = this.scoreString + this.score;
     },
 
 collide: function (player, enemy) {
