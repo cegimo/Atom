@@ -5,88 +5,119 @@
     this.nucleus = null;
     this.circumference = null;
     this.player = null;
-    this.constraint = null;
-    this.upKey = null;
-    this.downKey = null;
-    this.leftKey = null;
-    this.rightKey = null;
     this.cursors = null;
     this.enemy1 = null;
     this.enemy2 = null;
     this.enemy3 = null;
+    this.jump = null;
+    this.x = null;
+    this.y = null;
+    this.rotationEnemy1 = null;
+    this.rotationEnemy2 = null;
+    this.rotationEnemy3 = null;
+    this.timeGame = 0;
   }
   Game.prototype = {
 
+
     create: function () {
-      var x = this.game.width / 2
-        , y = this.game.height / 2;
-
-    
-this.physics.startSystem(Phaser.Physics.ARCADE);
- this.cursors = this.input.keyboard.createCursorKeys();
-      this.nucleus = this.add.sprite(x, y, 'nucleus');
-      this.circumference = this.add.sprite(x - 200, y - 200, 'circumference');
+      this.timeGame = this.game.time.now;
+      this.x = this.game.width / 2;
+      this.y = this.game.height / 2;
+    this.jump = false;
+    this.physics.startSystem(Phaser.Physics.ARCADE);
+    this.cursors = this.input.keyboard.createCursorKeys();
+      this.nucleus = this.add.sprite(this.x - 50, this.y - 50, 'nucleus');
+      this.circumference = this.add.sprite(this.x - 200, this.y - 200, 'circumference');
       this.physics.enable(this.circumference, Phaser.Physics.ARCADE);
-      //sprite.anchor.set(0.5);
-      //this.circumference.smoothed = false;
 
-      this.enemy3 = this.add.sprite(x , y , 'enemy3');
+
+      this.enemy3 = this.add.sprite(this.x , this.y , 'enemy3');
       this.physics.enable(this.enemy3, Phaser.Physics.ARCADE);
 
-      this.enemy1 = this.add.sprite(x , y, 'enemy1');
+      this.enemy1 = this.add.sprite(this.x , this.y, 'enemy1');
       this.physics.enable(this.enemy1, Phaser.Physics.ARCADE);
 
-      this.enemy2 = this.add.sprite(x-10 , y +10, 'enemy2');
+      this.enemy2 = this.add.sprite(this.x , this.y , 'enemy2');
       this.physics.enable(this.enemy2, Phaser.Physics.ARCADE);
 
-      this.player = this.add.sprite(x, y -245, 'player');
+      this.player = this.add.sprite(this.x-30, this.y -245, 'player');
       this.physics.enable(this.player, Phaser.Physics.ARCADE);
 
-      //this.nucleus.body.immovable = true;
        this.circumference.body.immovable = true;
-      this.enemy3.pivot.x = 180;
-      this.enemy3.pivot.y = 180;
 
-      this.enemy1.pivot.x = 180;
-      this.enemy1.pivot.y = 180;
+      this.enemy3.pivot.x = 170;
+      this.enemy3.pivot.y = 170;
 
-      this.enemy2.pivot.x = 180;
-      this.enemy2.pivot.y = 180;
-      //this.constraint = this.physics.p2.createRevoluteConstraint(this.electron, [ 25, 25 ], this.nucleus, [ 15, 15]);
+
+      this.enemy1.pivot.x = 170;
+      this.enemy1.pivot.y = 170;
+
+
+      this.enemy2.pivot.x = 170;
+      this.enemy2.pivot.y = 170;
+      this.enemy2.rotation =2;
+
+      this.rotationEnemy1 = 0.02;
+    this.rotationEnemy2 = 0.03;
+    this.rotationEnemy3 = 0.01;
+
 
     },
 
     update: function () {
       
-      this.enemy1.rotation -=0.02;
-      this.enemy2.rotation +=0.03;
-      this.enemy3.rotation += 0.01;
+      this.enemy1.rotation -=this.rotationEnemy1;
+      this.enemy2.rotation +=this.rotationEnemy2;
+      this.enemy3.rotation += this.rotationEnemy3;
 
 
+      this.physics.arcade.collide(this.circumference, this.player, function(obj1, obj2)
+      {
+        this.jump = true;
 
-      this.physics.arcade.collide(this.player, this.circumference, function(obj1, obj2)
-    {
-      
+      }, null, this);
 
-    }, null, this);
-    /*  this.physics.arcade.collide(this.electron, this.player, function(obj1, obj2)
-    {
-      this.stage.backgroundColor = '#992d2d';
-      alert("hola");
+     if (this.jump === true)
+     {
+        if (this.cursors.up.isDown)
+        {
+            this.player.body.velocity.y = -350;
+            this.jump = false;
+        }
+      }
+      else
+      {
+        this.player.body.velocity.y += 10;
+      }
+      this.collide(this.player, this.enemy1);
+      this.collide(this.player, this.enemy2);
+      this.collide(this.player, this.enemy3);
 
-    }, null, this);*/
-     //this.nucleus.body.rotateLeft(50);9
-       if (this.cursors.up.isDown)
-    {
-        this.player.body.velocity.y = -300;
-    }
-        else
-    {
-        this.player.body.velocity.setTo(0, 300);
-    }
-
-
+      if(this.timeGame + 4000 < this.game.time.now) 
+      {
+          this.rotationEnemy1 += 0.003;
+          this.rotationEnemy2 += 0.004;
+          this.rotationEnemy3 += 0.005;
+          this.timeGame = this.game.time.now;
+      } 
     },
+
+collide: function (player, enemy) {
+  if ((enemy.rotation >= 0.58) && (enemy.rotation <= 0.68) && (player.body.y > 140)){
+        this.game.state.start('menu');
+
+    }
+  if ((enemy.rotation >= 0.69) && (enemy.rotation <= 0.78) && (player.body.y > 130)){
+        this.game.state.start('menu');
+        
+      }
+  if ((enemy.rotation >= 0.79) && (enemy.rotation <= 0.95) && (player.body.y > 140)){
+        this.game.state.start('menu');
+        
+      }
+    },
+
 
 
   };
