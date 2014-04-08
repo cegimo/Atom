@@ -94,6 +94,10 @@
       }
       else
       {
+        }
+      }
+      else
+      {
         this.player.body.velocity.y += 10;
       }
       this.collide(this.player, this.enemy1);

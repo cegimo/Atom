@@ -17,7 +17,7 @@
 
       this.load.image('nucleus', 'assets/nucleus.png');
       this.load.image('circumference', 'assets/circumference.png');
-      this.load.image('player', 'assets/player1.png');
+      this.load.image('player', 'assets/player1.png');  
       this.load.image('enemy1', 'assets/enemy1.png'); // silver enemy
       this.load.image('enemy2', 'assets/enemy2.png'); // green enemy
       this.load.image('enemy3', 'assets/enemy3.png'); // red enemy
