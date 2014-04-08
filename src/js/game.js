@@ -90,6 +90,7 @@
      {
         if (this.cursors.up.isDown)
         {
+            console.log("Hola");
             this.player.body.velocity.y = -350;
             this.jump = false;
         }
